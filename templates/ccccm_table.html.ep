@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <script src="lib/bootstrap.min.js"></script>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="table-responsive">
+			<table class = "table table-hover">
+				<thead>
+				<tr>
+				<th><b>Cell1</b></th>
+				<th><b>Cell2</b></th>
+				<th><b>Relative Contact Area</b></th>
+				</tr>
+				</thead>
+
+				<tbody>
+				% foreach (@$rows) {
+					<tr>
+					% foreach (@$_) {
+						% if (uc $_ eq $cell_name) {
+							<td><i><b><%= $_ %></b></i></td>
+						% }else{
+							<td><%= $_ %></td>
+						% }
+					% }
+					</tr>
+				% }
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,41 @@
+#cy {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #EEEEEE;
+}
+#title {
+	color: black;
+	font-size:40px;
+	text-align:center;
+}
+#author {
+	text-align: center; color: #979797;
+}
+footer {
+	text-align: center;
+}
+#result_title {
+	text-align: center;
+}
+#grid p {
+	font-family: "Calibri";
+	font-weight: normal;
+	font-size: 24px;
+}
+
+.qmethod {
+	color: #EDF030;
+}
+
+.qexample {
+	color: #73D60D;
+}
+
+.qresult {
+	color: #C68D31;
+}
+
+

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <link href="/css/jquery.qtip.min.css" rel="stylesheet">
+   <link href="/css/style.css" rel="stylesheet">
+   <meta charset="utf-8">
+   <title>Draw Network</title>
+   <script src="/lib/jquery.min.js"></script>
+   <script src="/lib/jquery.qtip.min.js"></script>
+   <script src="/lib/cytoscape.min.js"></script>
+   <script src="/lib/encoder.js"></script>
+   <script src="/lib/cytoscape-qtip.js"></script>
+
+	<style type="text/css">
+		.qtip-tipsy{
+			background-color: #FFFF00;
+			color: black;
+			font-weight: lighter;
+		}
+	</style>
+
+</head>
+
+<body>
+   <div id="cy"></div>
+   
+	<script type="text/javascript">
+	    $(function(){ // on dom ready
+
+	        Encoder.EncodeType = "entity";
+
+	        var nodes = JSON.parse(Encoder.htmlDecode('<%= $draw_nodes %>'));
+	        var edges = JSON.parse(Encoder.htmlDecode('<%= $draw_edges %>'));
+
+	        var cy = cytoscape({
+	          container: document.getElementById('cy'),
+	          
+	          style: cytoscape.stylesheet()
+	              .selector('node')
+	                  .css({
+	                      'content': 'data(id)',
+	                  })
+	              .selector(':selected')
+	                  .css({
+	                      'background-color': 'black',
+	                      'line-color': 'black',
+	                      'target-arrow-color': 'black',
+	                      'source-arrow-color': 'black',
+	                      'opacity': 1
+	                  }),
+
+	          layout:{
+	              name:'circle',
+	              padding:30
+	          }
+	        });
+
+	        cy.load({"nodes": nodes, "edges": edges});
+
+	        cy.$('edge').qtip({
+	          content: {
+	              text: function(){ 
+	                 var result = 'not found!';
+	                 for(var i=0; i<edges.length; i++) {
+	                   if (edges[i].data.source.concat(edges[i].data.target) == this.id()) {
+	                 result = edges[i].data.weight;
+	                 break;
+	                   }
+	                 }
+	                 
+	                 return result; 
+	              }
+	          },
+
+	          style: {
+	          	  classes: 'qtip-tipsy',
+	              tip: {
+	                width: 16,
+	                height: 8
+	              }
+	          }
+	        });
+	        
+	        cy.zoomingEnabled( false );
+			cy.panningEnabled( false );
+			cy.autolock( true );
+
+	    }); // on dom ready
+
+	</script>
+
+</body>
+</html>

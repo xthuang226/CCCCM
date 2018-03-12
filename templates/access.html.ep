@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Website Access Record</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="lib/bootstrap.min.js"></script>
+    <script src="lib/jquery.min.js"></script>
+
+
+    <style type="text/css">
+        body {
+            background-color: #EEEEEE;
+            padding-top: 100px;
+        }
+        .tabtit {
+            background-color: #D0D0D0;
+            text-align: center;
+        }
+        .table {
+            text-align: left;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+<nav id="navbar-example" class="navbar navbar-default navbar-static navbar-fixed-top" role="navigation">
+    <div class="container-fluid"> 
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" 
+                    data-target=".bs-js-navbar-scrollspy">
+                <span class="sr-only">切换导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Access</a>
+        </div>
+        <div class="collapse navbar-collapse bs-js-navbar-scrollspy">
+            <ul class="nav navbar-nav">
+                <li><a href="#acsHome">acsHome</a></li>
+                <li><a href="#acsSearch">acsSearch</a></li>
+                <li><a href="#acsDownload">acsDownload</a></li>
+            </ul>
+        </div>
+    </div> 
+</nav>
+
+
+<div data-spy="scroll" data-target="#navbar-example" data-offset="0" style="overflow:auto; position: relative;">
+    <h1 align="center">Website Access Record</h1>
+
+    <div id="acsHome">
+        <h2 class='tabtit'>Access to the Home Page</h2>
+        <div class="table-responsive">
+            <table class = "table table-hover">
+                <thead>
+                <tr>
+                <th><b>IP</b></th>
+                <th><b>Location</b></th>
+                <th><b>Times</b></th>
+                <th><b>Last Access</b></th>
+                <th><b>Access History</b></th>
+                </tr>
+                </thead>
+
+                <tbody>
+                % foreach (@$query_ip_info) {
+                    <tr>
+                    % foreach (@$_) {
+                        % if (defined $_) {
+                            <td><%= $_ %></td>
+                        % }else{
+                            <td>Unknown</td>
+                        % }
+                    % }
+                    </tr>
+                % }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="acsSearch">
+        <h2 class='tabtit'>Access to the Search</h2>
+        <div class="table-responsive">
+            <table class = "table table-hover">
+                <thead>
+                <tr>
+                <th><b>IP</b></th>
+                <th><b>Location</b></th>
+                <th><b>Times</b></th>
+                <th><b>Last Access</b></th>
+                <th><b>Access History</b></th>
+                </tr>
+                </thead>
+
+                <tbody>
+                % foreach (@$query_ip_search) {
+                    <tr>
+                    % foreach (@$_) {
+                        % if (defined $_) {
+                            <td><%= $_ %></td>
+                        % }else{
+                            <td>Unknown</td>
+                        % }
+                    % }
+                    </tr>
+                % }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="acsDownload">
+        <h2 class='tabtit'>Access to the Download</h2>
+        <div class="table-responsive">
+            <table class = "table table-hover">
+                <thead>
+                <tr>
+                <th><b>IP</b></th>
+                <th><b>Location</b></th>
+                <th><b>Times</b></th>
+                <th><b>Last Access</b></th>
+                <th><b>Access History</b></th>
+                </tr>
+                </thead>
+
+                <tbody>
+                % foreach (@$query_ip_download) {
+                    <tr>
+                    % foreach (@$_) {
+                        % if (defined $_) {
+                            <td><%= $_ %></td>
+                        % }else{
+                            <td>Unknown</td>
+                        % }
+                    % }
+                    </tr>
+                % }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+
+</html>
